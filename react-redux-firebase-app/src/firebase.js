@@ -16,3 +16,6 @@ export const database = firebase.database().ref('posts/');
 export const firestoreStates = firebase.firestore().collection('states');
 export const firestoreCities = firebase.firestore().collection('cities');
 export const firestoreAreas = firebase.firestore().collection('areas');
+export const auth = firebase.auth();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const facebookProvider = new firebase.auth.FacebookAuthProvider();

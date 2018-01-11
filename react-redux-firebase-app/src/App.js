@@ -6,14 +6,24 @@ import { getPosts, savePosts, deletePost } from './Actions/PostActions';
 import { getStates } from './Actions/StatesActions';
 import { getCities } from './Actions/CitiesActions';
 import { getAreas } from './Actions/AreasActions';
+import { getUser, logout } from './Actions/UserActions';
 import { Field, reduxForm, reset, formValueSelector } from 'redux-form';
 
 class App extends Component {
   componentWillMount() {
     this.props.getPosts();
     this.props.getStates();
+    this.props.getUser();
+    if(this.props.user.loading === false && this.props.user.email === undefined) {
+      this.props.history.replace('/Login');
+    }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.user.loading === false &&  nextProps.user.email === undefined) {
+      this.props.history.replace('/Login');
+    }
+  }
   renderInputField = (field) => {
     return (
       <input type='text' {...field.input} placeholder={`Please enter ${field.label}`} />
@@ -85,9 +95,15 @@ class App extends Component {
     })
   }
 
+  signOut = () => {
+    this.props.logout();
+  }
+
   render() {
     const { handleSubmit } = this.props;
     return (
+      <div className='container'>
+       <button onClick={this.signOut}> SignOut </button>
       <div className="App">
         {this.renderPosts()}
         <div>
@@ -127,6 +143,7 @@ class App extends Component {
         </form>
        </div>
       </div>
+      </div>
     );
   }
 }
@@ -138,13 +155,14 @@ let form = reduxForm({
 
 const selector = formValueSelector('NewPost')
 
-form = connect(state => ({
+form = connect((state, ownProps) => ({
   posts: state.posts,
   states: state.states,
   cities: state.cities,
   areas: state.areas,
+  user: state.user,
   stateSelected: selector(state, 'states')
-}), { getPosts, savePosts, getStates, deletePost , getCities, getAreas})(form);
+}), { getPosts, savePosts, getStates, deletePost , getCities, getAreas, getUser , logout})(form);
 
 export default form;
 
