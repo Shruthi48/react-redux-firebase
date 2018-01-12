@@ -2,11 +2,11 @@ import React , { Component } from 'react';
 import SimpleBox from '../SimpleBox';
 import InputField from '../InputField';
 import FooterFormButton from '../FooterFormButtons';
-import { login, getUser, googleLogin, facebookLogin } from '../../Actions/UserActions';
+import { login, getUser, googleLogin, facebookLogin } from '../../../Actions/UserActions';
 import { connect } from 'react-redux';
 import ErrorAlert from '../ErrorAlert';
 import SocialMediaLogin from '../SocialMediaLogin';
-import { Icon } from 'antd';
+import { Icon, Divider } from 'antd';
 
 class Login extends Component {
     constructor(props) {
@@ -48,7 +48,7 @@ class Login extends Component {
         <form onSubmit={event => { this.submitLogin(event);}}>
           <div>
           <SocialMediaLogin {...this.props} />
-          <hr></hr>
+          <Divider style={{ color: 'white'}}>Or</Divider>
             <InputField id="email" type="text" label="Email"
                         inputAction={(event) => this.setState({ email: event.target.value })}
                         style={this.state.error ? errStyle : null}
@@ -60,7 +60,9 @@ class Login extends Component {
                         icon='lock'
             />
             <div>
-            <a href='#' onClick={() => {}}>
+            <a onClick={() => {
+              this.props.history.push('/ForgotPassword');
+            }}>
               <span > Forgot Password? </span>
             </a>
             </div>
@@ -77,7 +79,6 @@ class Login extends Component {
     }
   
     render() {
-      console.log('state..', this.state);
       return (
         <div>
           <SimpleBox title="Sign in" body={this.renderBody()}/>

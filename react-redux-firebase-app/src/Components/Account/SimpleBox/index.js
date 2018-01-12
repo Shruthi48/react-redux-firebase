@@ -5,9 +5,6 @@ export default class SimpleBox extends Component {
         const { title, body, footer } = this.props;
         return (
             <div className='simple-box-container'>
-              <div className='simple-box-title'>
-                {title}
-              </div>
               <div className='simple-box-body'>
                {body}
               </div>

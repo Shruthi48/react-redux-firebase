@@ -32,3 +32,11 @@ export function googleLogin() {
 export function facebookLogin() {
   return dispatch => auth.signInWithPopup(facebookProvider)
 }
+
+export function forgotPassword(email) {
+  return dispatch => auth.sendPasswordResetEmail(email)
+}
+
+export function emailVerification() {
+  return dispatch => auth.currentUser.sendEmailVerification()
+}

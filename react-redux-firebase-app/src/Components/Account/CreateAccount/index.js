@@ -2,10 +2,10 @@ import React , { Component } from 'react';
 import SimpleBox from '../SimpleBox';
 import InputField from '../InputField';
 import FooterFormButton from '../FooterFormButtons';
-import { createAccount } from '../../Actions/UserActions';
+import { createAccount, emailVerification } from '../../../Actions/UserActions';
 import { connect } from 'react-redux';
 import ErrorAlert from '../ErrorAlert';
-import { Icon } from 'antd';
+import { Icon, notification } from 'antd';
 
 class CreateAccount extends Component {
     constructor(props) {
@@ -37,6 +37,17 @@ class CreateAccount extends Component {
   
       return true;
     }
+
+    sendNotification(title, message) {
+        notification.open({
+            message: title,
+            description: message,
+            style: {
+              width: 600,
+              marginLeft: 335 - 600,
+            },
+        });
+    }
   
     submitAccount(event) {
       event.preventDefault();
@@ -44,7 +55,17 @@ class CreateAccount extends Component {
         return;
       }
       this.props.createAccount(this.state.email, this.state.password).then(() => {
+        const user_created = 'User Created';
+        const user_created_message = 'Please verify user by clicking on the verification link sent to your email';
+
+        this.sendNotification(user_created, user_created_message);
+
+        this.props.emailVerification().catch(err => {
+          const verificationError = 'Unable to send verification email';
+          this.sendNotification(verificationError, err.message);
+        })
         this.props.history.replace('/');
+        
       }).catch(err => {
         this.setState({
           error: err.message
@@ -91,4 +112,4 @@ class CreateAccount extends Component {
     }
   }
   
-  export default connect(null, { createAccount })(CreateAccount);
+  export default connect(null, { createAccount, emailVerification })(CreateAccount);

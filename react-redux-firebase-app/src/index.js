@@ -8,8 +8,9 @@ import thunk from 'redux-thunk';
 import reducers from './Reducers';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from './Components/Login';
-import CreateAccount from './Components/CreateAccount';
+import Login from './Components/Account/Login';
+import CreateAccount from './Components/Account/CreateAccount';
+import ForgotPassword from './Components/Account/ForgotPassword';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -20,6 +21,7 @@ ReactDOM.render(
  <MuiThemeProvider muiTheme={getMuiTheme()}>
   <BrowserRouter>
     <Switch>
+      <Route path='/ForgotPassword' component={ForgotPassword} />
       <Route path='/Login' component={Login}/>
       <Route path='/CreateAccount' component={CreateAccount}/>
       <Route path='/' component={App}/>
