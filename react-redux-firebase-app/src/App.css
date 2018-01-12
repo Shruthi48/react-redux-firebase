@@ -1,0 +1,74 @@
+@import '~antd/dist/antd.css';
+
+.simple-box-container {
+  background: url('./images/background.jpeg') no-repeat;
+  background-size: cover;
+  height: 750px;
+  margin: 0;
+  padding: 0;
+}
+
+.login-container {
+  width: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: black;
+  opacity: 0.7;
+  padding: 20px;
+}
+
+.user-input-field {
+  width: 100%;
+  overflow: hidden;
+  font-size: 16px;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-bottom: 1px solid white;
+  opacity: 1;
+}
+
+.input-field-container {
+  display: inline-block;
+}
+
+.user-icon {
+  font-size: 80px;
+  color: white;
+  text-align: center;
+  padding-left: 35%;
+  padding-bottom: 30px;
+
+}
+
+.footer-form-button-container {
+  margin-top: 4px;
+}
+
+.second-button {
+  float: right;
+}
+
+.google-button {
+  margin-right: 22%;
+}
+
+.facebook-button {
+  color: #4267b2;
+}
+
+.error {
+  background: red;
+  color: white;
+  padding: 4px;
+  opacity: 0.6;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.form-icon {
+  color: white;
+  font-size: 20px;
+  padding-right: 10px;
+}

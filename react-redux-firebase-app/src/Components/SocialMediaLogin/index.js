@@ -1,15 +1,12 @@
 import React from 'react';
+import { Button } from 'antd';
 
 const SocialMediaLogin = (props) => {
     const { googleLogin, facebookLogin } = props;
     return (
         <div>
-          <a href='#' onClick={googleLogin}>
-            <span> Signin with google </span>
-          </a>
-          <a href='#' onClick={facebookLogin}>
-            <span> Signin with facebook </span>
-          </a>
+            <Button  className='google-button' type="primary" icon="google" size='large' onClick={googleLogin}>Google </Button>
+            <Button className='facebook-button' icon="facebook" size='large' onClick={facebookLogin}>Facebook </Button>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import FooterFormButton from '../FooterFormButtons';
 import { createAccount } from '../../Actions/UserActions';
 import { connect } from 'react-redux';
 import ErrorAlert from '../ErrorAlert';
+import { Icon } from 'antd';
 
 class CreateAccount extends Component {
     constructor(props) {
@@ -56,17 +57,24 @@ class CreateAccount extends Component {
         borderColor: 'red'
       };
       return (
-        <div>
+        <div className='login-container'>
+          <Icon type='user' className='user-icon'/>
           <form onSubmit={(event) => this.submitAccount(event)}>
             <InputField id="email" type="text" label="Email"
                         inputAction={(event) => this.setState({ email: event.target.value })}
-                        style={this.state.error ? errStyle : null }/>
+                        style={this.state.error ? errStyle : null }
+                        icon='mail'
+            />
             <InputField id="password" type="password" label="Password"
                         inputAction={(event) => this.setState({ password: event.target.value })}
-                        style={this.state.error ? errStyle : null }/>
+                        style={this.state.error ? errStyle : null }
+                        icon='lock'
+            />
             <InputField id="confirm-password" type="password" label="Confirm Password"
                         inputAction={(event) => this.setState({ confirmPassword: event.target.value })}
-                        style={this.state.error ? errStyle : null }/>
+                        style={this.state.error ? errStyle : null }
+                        icon='lock'
+            />
             {this.state.error && <ErrorAlert>
               {this.state.error}
             </ErrorAlert>}

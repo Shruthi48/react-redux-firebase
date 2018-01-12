@@ -10,11 +10,14 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './Components/Login';
 import CreateAccount from './Components/CreateAccount';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
 <Provider store={createStoreWithMiddleware(reducers)} >
+ <MuiThemeProvider muiTheme={getMuiTheme()}>
   <BrowserRouter>
     <Switch>
       <Route path='/Login' component={Login}/>
@@ -22,5 +25,6 @@ ReactDOM.render(
       <Route path='/' component={App}/>
     </Switch>
   </BrowserRouter>
+ </MuiThemeProvider>
 </Provider>, document.getElementById('root'));
 registerServiceWorker();

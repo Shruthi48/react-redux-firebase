@@ -8,6 +8,8 @@ import { getCities } from './Actions/CitiesActions';
 import { getAreas } from './Actions/AreasActions';
 import { getUser, logout } from './Actions/UserActions';
 import { Field, reduxForm, reset, formValueSelector } from 'redux-form';
+import Button from 'antd/lib/button';
+import { Input } from 'antd';
 
 class App extends Component {
   componentWillMount() {
@@ -24,9 +26,15 @@ class App extends Component {
       this.props.history.replace('/Login');
     }
   }
-  renderInputField = (field) => {
+  // renderInputField = (field) => {
+  //   return (
+  //     <input type='text' {...field.input} placeholder={`Please enter ${field.label}`} />
+  //   )
+  // }
+
+  renderAntInputField =(field) => {
     return (
-      <input type='text' {...field.input} placeholder={`Please enter ${field.label}`} />
+      <Input {...field.input} placeholder={`Please enter ${field.label}`} />
     )
   }
 
@@ -111,13 +119,13 @@ class App extends Component {
               <Field
                 name='title'
                 className=''
-                component={this.renderInputField}
+                component={this.renderAntInputField}
                 label='Title'
               />
               <Field
                 name='body'
                 className=''
-                component={this.renderInputField}
+                component={this.renderAntInputField}
                 label='body'
               />
               <Field
@@ -139,6 +147,8 @@ class App extends Component {
                 component={this.renderSelectField}
                 label='area'
               />
+
+              <Button type="primary">Button</Button>
               <button type='submit'>Post </button>
         </form>
        </div>
